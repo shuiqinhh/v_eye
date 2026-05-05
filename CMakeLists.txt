@@ -33,10 +33,10 @@ target_link_libraries(tools ${GST_LIBS})
 ##################calibration################
 add_executable(capture calibration/capture.cpp)
 add_executable(calibrate_camera calibration/calibrate_camera.cpp)
-add_executable(calibrate_robotworld_handeye calibration/calibrate_robotworld_handeye.cpp)
+add_executable(calibrate_device2world_handeye calibration/calibrate_device2world_handeye.cpp)
 
 target_link_libraries(capture ${OpenCV_LIBS} fmt::fmt tools io)
 target_link_libraries(calibrate_camera ${OpenCV_LIBS} fmt::fmt yaml-cpp tools)
-target_link_libraries(calibrate_robotworld_handeye ${OpenCV_LIBS} fmt::fmt yaml-cpp tools)
+target_link_libraries(calibrate_device2world_handeye ${OpenCV_LIBS} fmt::fmt yaml-cpp tools)
 
 
