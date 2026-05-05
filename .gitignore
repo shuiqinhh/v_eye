@@ -1,0 +1,10 @@
+.vscode/
+.github/
+build/
+Camera/
+logs/
+assets/img_with_q/
+records/
+imgs/
+MvSdkLog/
+watchdog.sh
