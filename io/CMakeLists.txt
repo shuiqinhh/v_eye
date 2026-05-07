@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.16)
 
 find_package(yaml-cpp REQUIRED)
 
-add_subdirectory(serial)
 
 # 创建目标 io
 add_library(io STATIC 
@@ -21,5 +20,5 @@ else()
 endif()
 
 
-target_link_libraries(io MvCameraControl MVSDK usb-1.0 yaml-cpp serial)
+target_link_libraries(io MvCameraControl MVSDK usb-1.0 yaml-cpp)
 
