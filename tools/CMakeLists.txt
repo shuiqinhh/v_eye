@@ -6,4 +6,6 @@ add_library(tools OBJECT
     math_tools.cpp
     plotter.cpp
     logger.cpp
+    yaml.hpp
+    thread_safe_queue.hpp
 )
