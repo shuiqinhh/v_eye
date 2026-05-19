@@ -64,24 +64,88 @@ void load(
   }
 }
 
-void print_yaml(const cv::Mat & camera_matrix, const cv::Mat & distort_coeffs, double error)
+// 将 img_size 作为参数传入，并且添加了默认的保存路径参数
+void print_yaml(
+  const cv::Mat & camera_matrix, const cv::Mat & distort_coeffs, double error,
+  const cv::Size & img_size, const std::string & save_path = "../params.yaml")
 {
-  YAML::Emitter result;
-  std::vector<double> camera_matrix_data(
-    camera_matrix.begin<double>(), camera_matrix.end<double>());
-  std::vector<double> distort_coeffs_data(
-    distort_coeffs.begin<double>(), distort_coeffs.end<double>());
+  // 1. 从 cv::Mat 中解构出独立的相机内参和畸变参数
+  double fx = camera_matrix.at<double>(0, 0);
+  double fy = camera_matrix.at<double>(1, 1);
+  double cx = camera_matrix.at<double>(0, 2);
+  double cy = camera_matrix.at<double>(1, 2);
 
+  double k1 = distort_coeffs.at<double>(0);
+  double k2 = distort_coeffs.at<double>(1);
+  double p1 = distort_coeffs.at<double>(2);
+  double p2 = distort_coeffs.at<double>(3);
+  // 由于你在标定时使用了 cv::CALIB_FIX_K3，所以 k3 为 0
+  double k3 = 0.0;
+
+  YAML::Emitter result;
   result << YAML::BeginMap;
-  result << YAML::Comment(fmt::format("重投影误差: {:.4f}px", error));
-  result << YAML::Key << "camera_matrix";
-  result << YAML::Value << YAML::Flow << camera_matrix_data;
-  result << YAML::Key << "distort_coeffs";
-  result << YAML::Value << YAML::Flow << distort_coeffs_data;
-  result << YAML::Newline;
+  result << YAML::Comment(fmt::format("Reprojection Error: {:.4f}px", error));
+
+  // 2. ORB-SLAM3 相机基础参数定义
+  result << YAML::Key << "File.version" << YAML::Value << "1.0";
+  result << YAML::Key << "Camera.type" << YAML::Value << "PinHole";
+  result << YAML::Key << "Camera.setup" << YAML::Value << "monocular";
+
+  // 相机内参
+  result << YAML::Key << "Camera1.fx" << YAML::Value << fx;
+  result << YAML::Key << "Camera1.fy" << YAML::Value << fy;
+  result << YAML::Key << "Camera1.cx" << YAML::Value << cx;
+  result << YAML::Key << "Camera1.cy" << YAML::Value << cy;
+
+  // 畸变系数
+  result << YAML::Key << "Camera1.k1" << YAML::Value << k1;
+  result << YAML::Key << "Camera1.k2" << YAML::Value << k2;
+  result << YAML::Key << "Camera1.p1" << YAML::Value << p1;
+  result << YAML::Key << "Camera1.p2" << YAML::Value << p2;
+  result << YAML::Key << "Camera1.k3" << YAML::Value << k3;
+
+  // 图像尺寸与帧率
+  result << YAML::Key << "Camera.width" << YAML::Value << img_size.width;
+  result << YAML::Key << "Camera.height" << YAML::Value << img_size.height;
+  result << YAML::Key << "Camera.fps" << YAML::Value << 30;  // 若你的相机不是30帧，请修改
+  result << YAML::Key << "Camera.RGB" << YAML::Value << 1;
+
+  // 3. ORB-SLAM3 特征提取必需参数 (给出一组标准默认值)
+  result << YAML::Key << "ORBextractor.nFeatures" << YAML::Value << 1000;
+  result << YAML::Key << "ORBextractor.scaleFactor" << YAML::Value << 1.2;
+  result << YAML::Key << "ORBextractor.nLevels" << YAML::Value << 8;
+  result << YAML::Key << "ORBextractor.iniThFAST" << YAML::Value << 20;
+  result << YAML::Key << "ORBextractor.minThFAST" << YAML::Value << 7;
+
+  // 4. Viewer 窗口显示参数 (ORB-SLAM3 运行时生成 GUI 必需)
+  result << YAML::Key << "Viewer.KeyFrameSize" << YAML::Value << 0.05;
+  result << YAML::Key << "Viewer.KeyFrameLineWidth" << YAML::Value << 1;
+  result << YAML::Key << "Viewer.GraphLineWidth" << YAML::Value << 0.9;
+  result << YAML::Key << "Viewer.PointSize" << YAML::Value << 2;
+  result << YAML::Key << "Viewer.CameraSize" << YAML::Value << 0.08;
+  result << YAML::Key << "Viewer.CameraLineWidth" << YAML::Value << 3;
+  result << YAML::Key << "Viewer.ViewpointX" << YAML::Value << 0;
+  result << YAML::Key << "Viewer.ViewpointY" << YAML::Value << -0.7;
+  result << YAML::Key << "Viewer.ViewpointZ" << YAML::Value << -1.8;
+  result << YAML::Key << "Viewer.ViewpointF" << YAML::Value << 500;
+
   result << YAML::EndMap;
 
-  fmt::print("\n{}\n", result.c_str());
+  // 5. 组装最终字符串，首行强行插入 %YAML:1.0 供 OpenCV 识别
+  std::string final_yaml_str = "%YAML:1.0\n" + std::string(result.c_str());
+
+  // 打印输出到终端
+  fmt::print("\n{}\n", final_yaml_str);
+
+  // 自动将配置保存为本地文件
+  std::ofstream fout(save_path);
+  if (fout.is_open()) {
+    fout << final_yaml_str;
+    fout.close();
+    fmt::print("ORB-SLAM3 配置文件已成功保存至: {}\n", save_path);
+  } else {
+    fmt::print(stderr, "文件保存失败: {}\n", save_path);
+  }
 }
 
 int main(int argc, char * argv[])
@@ -126,5 +190,6 @@ int main(int argc, char * argv[])
   auto error = error_sum / total_points;
 
   // 输出yaml
-  print_yaml(camera_matrix, distort_coeffs, error);
+  // 输出生成并保存兼容 ORB-SLAM3 的 yaml (新代码)
+  print_yaml(camera_matrix, distort_coeffs, error, img_size, "../params.yaml");
 }

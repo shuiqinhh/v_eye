@@ -20,5 +20,5 @@ else()
 endif()
 
 
-target_link_libraries(io MvCameraControl MVSDK usb-1.0 yaml-cpp)
+target_link_libraries(io MvCameraControl usb-1.0 yaml-cpp)
 
