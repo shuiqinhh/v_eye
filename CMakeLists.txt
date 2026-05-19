@@ -29,6 +29,10 @@ target_link_libraries(tools ${GST_LIBS})
 
 ####################src###################
 
+add_executable(record_video src/record_video.cpp tools/hik_video_recorder.cpp)
+target_include_directories(record_video PRIVATE ${PROJECT_SOURCE_DIR}/io/hikrobot/include)
+target_link_libraries(record_video ${OpenCV_LIBS} fmt::fmt tools io)
+
 
 ##################calibration################
 # add_executable(capture calibration/capture.cpp)
