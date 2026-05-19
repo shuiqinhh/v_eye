@@ -41,3 +41,7 @@ Viewer.ViewpointX: 0
 Viewer.ViewpointY: -0.69999999999999996
 Viewer.ViewpointZ: -1.8
 Viewer.ViewpointF: 500
+
+# recorder视频录制参数
+output_path: "assets/output.mp4"
+fps: 30

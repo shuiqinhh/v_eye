@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-add_library(tools OBJECT 
+add_library(tools OBJECT
     exiter.cpp
     img_tools.cpp
     math_tools.cpp
