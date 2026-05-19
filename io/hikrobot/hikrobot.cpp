@@ -14,6 +14,7 @@ HikRobot::HikRobot(double exposure_ms, double gain, const std::string & vid_pid,
   gain_(gain),
   queue_(1),
   daemon_quit_(false),
+  handle_(nullptr),
   vid_(-1),
   pid_(-1),
   rotation_angle_(rotation_angle)
@@ -49,6 +50,7 @@ HikRobot::HikRobot(
   gain_(gain),
   queue_(1),
   daemon_quit_(false),
+  handle_(nullptr),
   vid_(-1),
   pid_(-1),
   rotation_angle_(rotation_angle),
@@ -232,6 +234,8 @@ void HikRobot::capture_stop()
 {
   capture_quit_ = true;
   if (capture_thread_.joinable()) capture_thread_.join();
+
+  if (!handle_) return;
 
   unsigned int ret;
 
