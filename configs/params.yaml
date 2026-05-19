@@ -4,7 +4,40 @@ center_distance_mm: 40
 rotation_angle: 0
 
 camera_name: "hikrobot"
-exposure_ms: 8
+exposure_ms: 11
 gain: 10.0
 vid_pid: "2bdf:0001"
 
+# camera params
+# Reprojection Error: 0.1236px
+File.version: 1.0
+Camera.type: PinHole
+Camera.setup: monocular
+Camera1.fx: 2737.4793727767001
+Camera1.fy: 2731.6117605358722
+Camera1.cx: 644.89698415849489
+Camera1.cy: 352.11418686348543
+Camera1.k1: -0.14453585808592212
+Camera1.k2: 0.092239001151746672
+Camera1.p1: 0.001254922497122248
+Camera1.p2: 0.00094413469470715542
+Camera1.k3: 0
+Camera.width: 1440
+Camera.height: 1080
+Camera.fps: 30
+Camera.RGB: 1
+ORBextractor.nFeatures: 1000
+ORBextractor.scaleFactor: 1.2
+ORBextractor.nLevels: 8
+ORBextractor.iniThFAST: 20
+ORBextractor.minThFAST: 7
+Viewer.KeyFrameSize: 0.050000000000000003
+Viewer.KeyFrameLineWidth: 1
+Viewer.GraphLineWidth: 0.90000000000000002
+Viewer.PointSize: 2
+Viewer.CameraSize: 0.080000000000000002
+Viewer.CameraLineWidth: 3
+Viewer.ViewpointX: 0
+Viewer.ViewpointY: -0.69999999999999996
+Viewer.ViewpointZ: -1.8
+Viewer.ViewpointF: 500
