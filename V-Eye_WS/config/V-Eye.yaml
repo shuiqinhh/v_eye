@@ -1,0 +1,21 @@
+# 相机参数
+Camera:
+  fps: 30
+  width: 640
+  height: 480
+  fx: 500.0
+  fy: 500.0
+  cx: 320.0
+  cy: 240.0
+
+# ORB特征提取参数
+ORB:
+  nFeatures: 1000
+  scaleFactor: 1.2
+  nLevels: 8
+
+# 系统开关
+System:
+  enableSemantic: true
+  enableFusion: true
+  verbose: true
