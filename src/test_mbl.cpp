@@ -6,8 +6,8 @@
 
 int main(int argc, char ** argv)
 {
-  const std::string model_path = (argc >= 2) ? argv[1] : "assets/colmap_hall/model.bin";
-  const std::string video_path = (argc >= 3) ? argv[2] : "assets/hall.mp4";
+  const std::string model_path = (argc >= 2) ? argv[1] : "assets/colmap_basement/model.bin";
+  const std::string video_path = (argc >= 3) ? argv[2] : "assets/basement.mp4";
 
   nav::Mbl mbl(model_path);
   cv::VideoCapture cap(video_path);

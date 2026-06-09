@@ -8,8 +8,8 @@
 
 int main(int argc, char ** argv)
 {
-  std::string input_path = "assets/hall.mp4";
-  std::string out_dir = "assets/colmap_hall";
+  std::string input_path = "assets/basement.mp4";
+  std::string out_dir = "assets/colmap_basement";
   if (argc >= 2) input_path = argv[1];
   if (argc >= 3) out_dir = argv[2];
 

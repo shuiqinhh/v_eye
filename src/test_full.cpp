@@ -14,9 +14,9 @@
 
 int main(int argc, char ** argv)
 {
-  const std::string model_path = (argc >= 2) ? argv[1] : "assets/colmap_hall/model.bin";
-  const std::string video_path = (argc >= 3) ? argv[2] : "assets/hall.mp4";
-  const std::string landmark_path = (argc >= 4) ? argv[3] : "assets/landmarks_hall.json";
+  const std::string model_path = (argc >= 2) ? argv[1] : "assets/colmap_basement/model.bin";
+  const std::string video_path = (argc >= 3) ? argv[2] : "assets/basement.mp4";
+  const std::string landmark_path = (argc >= 4) ? argv[3] : "assets/landmarks_basement.json";
 
   // ---------- Init all modules ----------
   auto slam = nav::OrbSlam3Wrapper("assets/ORBvoc.txt", "configs/orb_slam3.yaml", false);
