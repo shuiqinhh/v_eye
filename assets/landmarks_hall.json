@@ -1,0 +1,30 @@
+[
+  {
+    "x": 0.0, "y": 0.0, "z": 0.0, "yaw": 0,
+    "on_left": "wall",
+    "on_right": "door",
+    "caution": "mind the door frame",
+    "action": "go straight"
+  },
+  {
+    "x": 0.0, "y": 0.0, "z": -0.5, "yaw": 0,
+    "on_left": "notice board",
+    "on_right": "office door",
+    "caution": "watch for people exiting",
+    "action": "turn right"
+  },
+  {
+    "x": 0.5, "y": 0.0, "z": -0.5, "yaw": 90,
+    "on_left": "staircase",
+    "on_right": "wall",
+    "caution": "stairs ahead, use handrail",
+    "action": "go upstairs"
+  },
+  {
+    "x": 1.0, "y": 0.0, "z": -0.5, "yaw": 0,
+    "on_left": "meeting room",
+    "on_right": "library entrance",
+    "caution": "you have arrived",
+    "action": "you have arrived at the library"
+  }
+]
