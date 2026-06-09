@@ -9,18 +9,18 @@ gain: 10.0
 vid_pid: "2bdf:0001"
 
 # camera params
-# Reprojection Error: 0.1236px
+# Reprojection Error: 0.1328px
 File.version: 1.0
 Camera.type: PinHole
 Camera.setup: monocular
-Camera1.fx: 2737.4793727767001
-Camera1.fy: 2731.6117605358722
-Camera1.cx: 644.89698415849489
-Camera1.cy: 352.11418686348543
-Camera1.k1: -0.14453585808592212
-Camera1.k2: 0.092239001151746672
-Camera1.p1: 0.001254922497122248
-Camera1.p2: 0.00094413469470715542
+Camera1.fx: 2601.5785035678987
+Camera1.fy: 2585.1271356969955
+Camera1.cx: 778.77202540294252
+Camera1.cy: 378.08514929700226
+Camera1.k1: -0.010254228766409327
+Camera1.k2: 0.024610640708800813
+Camera1.p1: -0.0039230787889211862
+Camera1.p2: 0.0083480735202313486
 Camera1.k3: 0
 Camera.width: 1440
 Camera.height: 1080
