@@ -1,0 +1,37 @@
+[
+  {
+    "x": -0.03, "y": 0.05, "z": 0.04, "yaw": 0,
+    "on_left": "wall",
+    "on_right": "corridor",
+    "caution": "",
+    "action": "go straight"
+  },
+  {
+    "x": -0.03, "y": 0.22, "z": 0.19, "yaw": 0,
+    "on_left": "crossing to the left",
+    "on_right": "wall",
+    "caution": "intersection ahead",
+    "action": "go straight"
+  },
+  {
+    "x": -0.40, "y": -0.01, "z": -0.21, "yaw": 90,
+    "on_left": "notice board",
+    "on_right": "corner entrance",
+    "caution": "turn right into the corner",
+    "action": "turn right"
+  },
+  {
+    "x": -0.40, "y": -0.01, "z": -1.5, "yaw": 0,
+    "on_left": "notice board",
+    "on_right": "wall",
+    "caution": "turn right into the corner",
+    "action": "turn back"
+  },
+  {
+    "x": 0.76, "y": -0.32, "z": 1.66, "yaw": -90,
+    "on_left": "intersection entrance",
+    "on_right": "blackboard",
+    "caution": "turn left to enter",
+    "action": "turn left"
+  }
+]

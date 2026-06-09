@@ -79,15 +79,19 @@ MblResult Mbl::localize(const cv::Mat & bgr_image)
 
   // 4. PnP + RANSAC
   cv::Mat rvec, tvec, inlier_mask;
-  cv::solvePnPRansac(pts_3d, pts_2d, K_, cv::Mat(), rvec, tvec,
-                     false, 100, 8.0f, 0.99f, inlier_mask);
+  try {
+    cv::solvePnPRansac(pts_3d, pts_2d, K_, cv::Mat(), rvec, tvec,
+                       false, 100, 8.0f, 0.99f, inlier_mask);
+  } catch (const cv::Exception &) {
+    return result;
+  }
 
   int inlier_count = 0;
   if (!inlier_mask.empty()) {
     inlier_count = cv::countNonZero(inlier_mask);
   }
 
-  if (inlier_count < 8) return result;
+  if (inlier_count < 4) return result;
 
   // 5. Refine with all inliers
   std::vector<cv::Point2f> inlier_2d;
@@ -98,7 +102,11 @@ MblResult Mbl::localize(const cv::Mat & bgr_image)
       inlier_3d.push_back(pts_3d[static_cast<size_t>(i)]);
     }
   }
-  cv::solvePnP(inlier_3d, inlier_2d, K_, cv::Mat(), rvec, tvec, true);
+  try {
+    cv::solvePnP(inlier_3d, inlier_2d, K_, cv::Mat(), rvec, tvec, true);
+  } catch (const cv::Exception &) {
+    return result;
+  }
 
   // Convert to rotation matrix
   cv::Mat R_mat;
