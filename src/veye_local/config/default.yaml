@@ -1,0 +1,24 @@
+# Default paths for V-Eye single-PC pipeline
+
+map_dir: "/home/rm/Desktop/ros2_ws/src/maps"
+camera_yaml: "/home/rm/Desktop/ros2_ws/src/ORB_SLAM3_ROS2/config/monocular/test.yaml"
+vocabulary: "/home/rm/Desktop/ros2_ws/src/ORB_SLAM3_ROS2/vocabulary/ORBvoc.txt"
+
+mapping_video: "/home/rm/Desktop/ros2_ws/src/ORB_SLAM3_ROS2/videos/test_SLAM.mp4"
+localization_video: "/home/rm/Desktop/ros2_ws/src/ORB_SLAM3_ROS2/videos/test_MBL.mp4"
+
+video_rate: 1.0
+video_loop: false
+
+slam_visualization: false
+keyframe_interval_sec: 1.5
+
+mbl:
+  min_inliers: 12
+  ratio_test: 0.75
+  reproj_error: 8.0
+  min_uniformity: 0.25
+
+integrator:
+  scale_alpha: 0.2
+  smooth_alpha: 0.35

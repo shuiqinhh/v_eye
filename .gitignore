@@ -1,0 +1,9 @@
+.cache/
+.vscode/
+build/
+install/
+log/
+*.clangd
+compile_commands.json
+src/ORB_SLAM3_ROS2/EuRoC/
+src/ORB_SLAM3_ROS2/videos/
