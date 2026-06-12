@@ -23,10 +23,10 @@ v_eye/
 │   ├── camera.hpp/cpp          # 相机工厂类
 │   └── hikrobot/               # 海康机器人驱动
 │       ├── hikrobot.hpp/cpp    # 帧抓取、USB 恢复、Bayer→RGB
-│       ├── include/            # 厂商 SDK 头文件
-│       └── lib/                # 厂商 SDK 动态库
+│       ├── include/            # SDK 头文件
+│       └── lib/                # SDK 动态库
 │
-├── tools/                      # 工具库（Object 库）
+├── tools/                      # 工具库
 │   ├── math_tools.hpp/cpp      # 欧拉角/四元数/坐标变换
 │   ├── img_tools.hpp/cpp       # 图像绘制
 │   ├── plotter.hpp/cpp         # UDP 数据可视化
@@ -40,7 +40,7 @@ v_eye/
 │   ├── orb_slam3_wrapper.hpp/cpp     # ORB-SLAM3 封装
 │   ├── mbl.hpp/cpp                   # 全局定位（2D-3D PnP）
 │   ├── vb_gps_integrator.hpp/cpp     # SLAM + MBL 融合
-│   ├── scene_understanding.hpp/cpp   # 障碍物检测 + 测距
+│   ├── scene_understanding.hpp/cpp   # 障碍物边缘检测 + 测距
 │   ├── landmark_map.hpp/cpp          # 地标地图加载/查询
 │   └── navigator.hpp/cpp             # 导航消息生成
 │

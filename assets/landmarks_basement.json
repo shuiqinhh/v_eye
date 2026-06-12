@@ -22,7 +22,7 @@
   },
   {
     "x": -0.40, "y": -0.01, "z": -1.5, "yaw": 0,
-    "on_left": "notice board",
+    "on_left": "wall",
     "on_right": "wall",
     "caution": "turn right into the corner",
     "action": "turn back"
@@ -30,7 +30,7 @@
   {
     "x": 0.76, "y": -0.32, "z": 1.66, "yaw": -90,
     "on_left": "intersection entrance",
-    "on_right": "blackboard",
+    "on_right": "notice board",
     "caution": "turn left to enter",
     "action": "turn left"
   }
